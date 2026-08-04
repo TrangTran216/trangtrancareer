@@ -1,54 +1,69 @@
-# California Procurement Intelligence
-## SQLite Analysis and Data-Quality Audit of Public Purchase Orders, FY 2012–2015
+# Trang Tran Career — GitHub Pages Website
 
-### Overview
+This is the deployment-ready static portfolio for:
 
-This portfolio project analyzes 344,504 California public purchase-order line records in SQLite. The workflow preserves the raw import, standardizes analysis fields through a reusable view, audits missing and repeated records, creates analytical summaries, demonstrates relational joins, and reconciles the final reporting table to the source.
+- GitHub repository: `TrangTran216/trangtrancareer`
+- Published site: `https://trangtran216.github.io/trangtrancareer/`
+- GitHub Pages source: `main` branch, repository root (`/(root)`)
 
-### Public data source
+The site has no build step. GitHub Pages serves the HTML, CSS, JavaScript, PDF, Excel workbook, SQL, CSV, PNG, and ZIP files directly.
 
-California Department of General Services, **Purchase Order Data 2012–2015**, California Open Data Portal:
+## Required repository structure
 
-https://lab.data.ca.gov/dataset/purchase-order-data
+The directory structure must be preserved exactly:
 
-The dataset is historical public procurement information. Monetary totals in this project are reported source-line values and should not be interpreted as audited cash expenditures.
+```text
+trangtrancareer/
+├── index.html
+├── about.html
+├── resume.html
+├── projects.html
+├── contact.html
+├── 404.html
+├── styles.css
+├── script.js
+├── .nojekyll
+├── projects/
+│   ├── open-fiscal-vendor-transaction-analysis.html
+│   └── california-procurement-intelligence-sqlite.html
+└── assets/
+    ├── Trang_Tran_Resume.pdf
+    ├── Open_Fiscal_Vendor_Transaction_Analysis.xlsx
+    └── project-2/
+        ├── California_Procurement_SQLite_Project_Artifacts.zip
+        ├── california_procurement_sqlite_analysis.sql
+        ├── README.md
+        ├── outputs/
+        └── screenshots/
+```
 
-### Database objects
+Do not move the contents of `projects/`, `assets/project-2/outputs/`, or `assets/project-2/screenshots/` into the repository root. The website links intentionally reference those folders.
 
-- `purchase_orders`: raw imported source table
-- `vw_purchase_orders_clean`: reusable cleaning and standardization view
-- `department_lookup`: normalized department lookup table
-- `purchase_order_cleaned_summary`: grouped reporting table
-- Four indexes supporting fiscal-year, department, supplier, and UNSPSC filters
+## Included pages
 
-### SQL techniques demonstrated
+- `index.html` — Home and featured Project 2
+- `about.html` — Professional background and current skill set
+- `resume.html` — Resume with embedded preview and PDF download
+- `projects.html` — Completed project index
+- `projects/open-fiscal-vendor-transaction-analysis.html` — Project 1 detail page
+- `projects/california-procurement-intelligence-sqlite.html` — Project 2 detail page
+- `contact.html` — Email, LinkedIn, and phone
+- `404.html` — Friendly error page with redirects for old misplaced project URLs
 
-- `CREATE VIEW` and raw-to-clean architecture
-- `TRIM`, `NULLIF`, `COALESCE`, `CAST`, and currency parsing
-- `CASE WHEN` for quality flags and amount buckets
-- CTEs, `GROUP BY`, `HAVING`, ranking, and aggregate statistics
-- Primary keys, unique constraints, lookup-table design, and `LEFT JOIN`
-- Row-count and monetary-total reconciliation
-- Summary-table indexing
+## Project 2 assets
 
-### Verified results
+The `assets/project-2/` folder contains:
 
-- Source records: **344,504**
-- Distinct purchase-order numbers: **197,000**
-- Departments: **111**
-- Missing departments: **0**
-- Missing supplier code and name: **36**
-- Missing purchase amounts: **30**
-- Repeated purchase-order identifiers: **33,956 groups**
-- Exact duplicate audit: **1,305 groups / 2,087 extra rows**
-- Reporting-summary rows: **150,297**
-- Reconciled reported source-line value: **$150,517,871,463.40**
-- Unmatched nonmissing departments after lookup join: **0**
+- Reproducible SQLite SQL workflow
+- Six selected CSV result and validation exports
+- Seven database and query-result screenshots
+- Project README
+- Complete downloadable evidence bundle
 
-### Files in this project package
+The 164 MB raw source CSV is intentionally not bundled with the website package. The project page links to the official California Open Data source.
 
-- `california_procurement_sqlite_analysis.sql`: reproducible SQL workflow
-- `outputs/`: selected CSV result exports
-- `screenshots/`: database and query-result evidence
+## Recommended Windows deployment
 
-The 164 MB raw source CSV is intentionally not bundled with the website package. Retrieve it from the official source above when reproducing the analysis.
+Use the supplied `Repair-TrangTranPortfolio.ps1` script. It clones `TrangTran216/trangtrancareer`, removes the incorrectly flattened website files, copies this package while preserving all folders, force-stages static assets, validates tracked paths, commits, and pushes to `main`.
+
+See `DEPLOY-WINDOWS.md` for the terminal commands.
